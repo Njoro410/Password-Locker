@@ -30,6 +30,13 @@ class TestCredential(unittest.TestCase):
         test_credential.save_credential()
         self.assertEqual(len(Credential.credential_list), 2)
 
+    def test_delete_credential(self):
+        """Test deleting a credential"""
+        self.new_credential.save_credential()
+        test_credential = Credential("facebook","Joe Biden","1234abcd","example@yahoo.com")
+        test_credential.save_credential()
+        self.new_credential.delete_credential()
+        self.assertEqual(len(Credential.credential_list), 1)
 
 
 if __name__ == '__main__':
