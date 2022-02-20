@@ -19,6 +19,18 @@ class TestCredential(unittest.TestCase):
         self.assertEqual(self.new_credential.secret_key, "abcd1234")
         self.assertEqual(self.new_credential.email, "example@gmail.com")
 
+    def test_save_credential(self):
+        self.new_credential.save_credential()
+        self.assertEqual(len(Credential.credential_list), 1)
+
+    def test_save_multiple_credential(self):
+        """Test saving multiple credentials for multiple accounts"""
+        self.new_credential.save_credential()
+        test_credential = Credential("facebook","Joe Biden","1234abcd","example@yahoo.com")
+        test_credential.save_credential()
+        self.assertEqual(len(Credential.credential_list), 2)
+
+
 
 if __name__ == '__main__':
     unittest.main()
