@@ -1,3 +1,4 @@
+from genericpath import exists
 import unittest
 import pyperclip
 
@@ -47,6 +48,14 @@ class TestCredential(unittest.TestCase):
         found_credential = Credential.find_credential_by_account_name("spotify")
 
         self.assertEqual(found_credential.user_details, test_credential.user_details)
+    
+    def test_credential_exists(self):
+        self.new_credential.save_credential()
+        test_credential = Credential("spotify","Trump","xyz789","example@outlook.com")
+        test_credential.save_credential()
+
+        exists = Credential.credential_exists(test_credential.secret_key)
+        self.assertTrue(exists)
 
 if __name__ == '__main__':
     unittest.main()
