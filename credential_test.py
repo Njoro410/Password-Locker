@@ -37,7 +37,16 @@ class TestCredential(unittest.TestCase):
         test_credential.save_credential()
         self.new_credential.delete_credential()
         self.assertEqual(len(Credential.credential_list), 1)
+    
+    def test_find_credential_by_account_name(self):
+        """Test finding a credential"""
+        self.new_credential.save_credential()
+        test_credential = Credential("spotify","Trump","xyz789","example@outlook.com")
+        test_credential.save_credential()
 
+        found_credential = Credential.find_credential("spotify")
+
+        self.assertEqual(found_credential.user_details, test_credential.user_details)
 
 if __name__ == '__main__':
     unittest.main()
