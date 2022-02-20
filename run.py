@@ -126,7 +126,7 @@ def main():
             print("-"*20)
 
             print("Which account is this credential,eg,fb,twitter,insta")
-            account = input()
+            account = input().capitalize()
 
             print("Username for this credential")
             uname = input()
@@ -149,7 +149,7 @@ def main():
             print("-"*20)
 
             print("Which account is this credential eg. twitter,fb,insta")
-            account = input()
+            account = input().capitalize()
 
             print("Username for this credential")
             uname = input()
@@ -200,13 +200,16 @@ def main():
 
             print("Enter account name for credential you are looking for")
 
-            query_name = input()
+            query_name = input().capitalize()
             if credential_exists(query_name):
                 search_credential = locate_credential(query_name)
                 print(f"Account Name:-----{search_credential.account_name}")
                 print(f"User Name:-----{search_credential.user_details}")
                 print(f"Password:-----{search_credential.secret_key}")
                 print(f"Email:-----{search_credential.email}")
+                print('\n')
+                print("Navigate with these short codes: >>SE<< store existing credential,>>FC<< Find a credential, >>SN<< store new credential, >>VW<<  view credentials, >>DEL<< delete a credential,>>EX<< exit application,")
+
             else:
                 print(";-( credential does not exist")
                 print("Navigate with these short codes: >>SE<< store existing credential,>>FC<< Find a credential, >>SN<< store new credential, >>VW<<  view credentials, >>DEL<< delete a credential,>>EX<< exit application,")
