@@ -2,6 +2,7 @@
 
 # change the mode (chmod +x run.py) in terminal
 
+from sqlalchemy import case
 from user import User
 from credentials import Credential
 
@@ -15,8 +16,8 @@ def create_user(name, email, password):
 # create new credential
 
 
-def create_credential(account, uname, pword, mail):
-    new_credential = Credential(account, uname, pword, mail)
+def create_credential(account, uname, pword, email):
+    new_credential = Credential(account, uname, pword, email)
     return new_credential
 
 
@@ -25,6 +26,18 @@ def save_user(user: User):
     method that saves new user
     """
     user.save_user()
+
+
+def check_existing_user(email,password):
+    return User.user_exists(email,password)
+
+
+# def check_password(password):
+#     return User.password_exists(password)
+
+
+def find_user(email):
+    return User.find_user_by_email(email)
 
 
 def save_credential(cred: Credential):
@@ -71,10 +84,11 @@ def main():
 
     while True:
 
+        # print("What would you like to do: se- store existing password, sn- store new password, vw - view credentials, del - delete a credential")
         short_code = input().upper()
         if short_code == 'N':
             print("Enter your details to create an account")
-            print("*"*10)
+            print("*"*20)
 
             print("----Create a username----")
             name = input()
@@ -89,6 +103,27 @@ def main():
             print('\n')
             print(f"Hooray new user >>{name}<< with email >>{mail}<< created")
             print('\n')
+            print("****please press Y to log in****")
+
+        elif short_code == 'Y':
+            print("Enter your details to log in:")
+            print("*"*20)
+
+            print("****What's your email****")
+            mail = input()
+
+            print("****What's your password****")
+            passy = input()
+
+            if check_existing_user(mail,passy):
+                search_user = find_user(mail)
+                print('*'*20)
+
+                print(f"Hello {search_user.user_name}")
+                print("What would you like to do: >>se<< store existing credential, >>sn<< store new credential, >>vw<<  view credentials, >>del<< delete a credential")
+            else:
+                print("****Oh Oh, Please input correct details****")
+                print("*****Press Y/y to login again or  N/y to create an account*****")
 
 
 if __name__ == '__main__':
