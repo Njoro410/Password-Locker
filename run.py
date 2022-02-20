@@ -122,7 +122,7 @@ def main():
                 print('*'*20)
 
                 print(f"Hello {search_user.user_name}")
-                print("Navigate with these short codes: >>se<< store existing credential,>>fc<< Find a credential, >>sn<< store new credential, >>vw<<  view credentials, >>del<< delete a credential")
+                print("Navigate with these short codes: >>SE<< store existing credential,>>FC<< Find a credential, >>SN<< store new credential, >>VW<<  view credentials, >>DEL<< delete a credential,>>EX<< exit application,")
             else:
                 print("****Oh Oh, Please input correct details****")
                 print("*****Press Y/y to login again or  N/n to create an account*****")
@@ -131,7 +131,7 @@ def main():
             print("***Create Existing Credential***")
             print("-"*20)
 
-            print("Which account is this credential")
+            print("Which account is this credential,eg,fb,twitter,insta")
             account = input()
 
             print("Username for this credential")
@@ -147,13 +147,14 @@ def main():
             print('\n')
             print(
                 f"Existing Credential Created \n Account: {account} \n Username: {uname} \n Password: {pword} \n Email: {mail}")
+            print("Navigate with these short codes: >>SE<< store existing credential,>>FC<< Find a credential, >>SN<< store new credential, >>VW<<  view credentials, >>DEL<< delete a credential,>>EX<< exit application,")
 
         elif short_code == 'SN':
 
             print("***Create New Credential***")
             print("-"*20)
 
-            print("Which account is this credential")
+            print("Which account is this credential eg. twitter,fb,insta")
             account = input()
 
             print("Username for this credential")
@@ -163,20 +164,23 @@ def main():
             mail = input()
 
             print(
-                "Press 'O/o' to Input own Password or 'G/g' to generate a password for you(recommended)")
+                "Press AP -auto generated password(recommended) or MP- for your own password")
 
-            # #  length = 10
-            # #  random_password = ''.join(secrets.choice(string.ascii_letters + string.digits) for i in range(length))
-            # # #  print(str(random_password))
-            #  print("password" + str(random_password))
+            short_code2 = input().upper()
+            if short_code2 == "AP":
+                length = 10
+                random_password = ''.join(secrets.choice(
+                    string.ascii_letters + string.digits) for i in range(length))
+                pword = str(random_password)
+            elif short_code2 == "MP":
+                print("What is this credential's password")
+                pword = input()
 
-        #     # print("What is this credential's password")
-        #     pword = str(random_password)
-
-        #     save_credential(create_credential(account, uname, pword, mail))
-        #     print('\n')
-        #     print(
-        #         f"New Credential Created \n Account: {account} \n Username: {uname} \n Password: {pword} \n Email: {mail}")
+            save_credential(create_credential(account, uname, pword, mail))
+            print('\n')
+            print(
+                f"New Credential Created \n Account: {account} \n Username: {uname} \n Password: {pword} \n Email: {mail}")
+            print("Navigate with these short codes: >>SE<< store existing credential,>>FC<< Find a credential, >>SN<< store new credential, >>VW<<  view credentials, >>DEL<< delete a credential,>>EX<< exit application,")
 
         elif short_code == 'VW':
 
@@ -194,6 +198,7 @@ def main():
                 print('\n')
                 print("Ooops, Looks like you don't have any credentials")
                 print('\n')
+                print("Navigate with these short codes: >>SE<< store existing credential,>>FC<< Find a credential, >>SN<< store new credential, >>VW<<  view credentials, >>DEL<< delete a credential,>>EX<< exit application,")
 
         elif short_code == "FC":
 
@@ -208,6 +213,7 @@ def main():
                 print(f"Email:-----{search_credential.email}")
             else:
                 print(";-( credential does not exist")
+                print("Navigate with these short codes: >>SE<< store existing credential,>>FC<< Find a credential, >>SN<< store new credential, >>VW<<  view credentials, >>DEL<< delete a credential,>>EX<< exit application,")
 
         elif short_code == 'DEL':
 
@@ -215,7 +221,16 @@ def main():
             delete_query = input()
             if credential_exists(delete_query):
                 delete_credential(credential)
-            print("credential deleted successfully")
+                print("credential deleted successfully")
+            else:
+                print("enter account name correctly")
+
+                print("Navigate with these short codes: >>SE<< store existing credential,>>FC<< Find a credential, >>SN<< store new credential, >>VW<<  view credentials, >>DEL<< delete a credential,>>EX<< exit application,")
+        elif short_code == 'EX':
+            print("Thank You for using Password Locker")
+            break
+        else:
+            print("Please use correct short code")
 
 
 if __name__ == '__main__':
