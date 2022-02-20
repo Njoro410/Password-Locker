@@ -22,8 +22,8 @@ class TestUser(unittest.TestCase):  # import Testcase module to show that this i
         self.assertEqual(self.new_user.password,"abc123")
     
     def test_save_user(self):
-
-
+        self.new_user.save_user()
+        self.assertEqual(len(User.user_list), 1)
 
 if __name__ == '__main__':
     unittest.main()
