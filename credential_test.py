@@ -44,7 +44,7 @@ class TestCredential(unittest.TestCase):
         test_credential = Credential("spotify","Trump","xyz789","example@outlook.com")
         test_credential.save_credential()
 
-        found_credential = Credential.find_credential("spotify")
+        found_credential = Credential.find_credential_by_account_name("spotify")
 
         self.assertEqual(found_credential.user_details, test_credential.user_details)
 
