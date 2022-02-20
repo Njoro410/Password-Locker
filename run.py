@@ -3,7 +3,6 @@
 # change the mode (chmod +x run.py) in terminal
 
 import string
-import random
 import secrets
 from user import User
 from credentials import Credential
@@ -32,10 +31,6 @@ def save_user(user: User):
 
 def check_existing_user(email, password):
     return User.user_exists(email, password)
-
-
-# def check_password(password):
-#     return User.password_exists(password)
 
 
 def find_user(email):
@@ -86,7 +81,6 @@ def main():
 
     while True:
 
-        # print("What would you like to do: se- store existing password, sn- store new password, vw - view credentials, del - delete a credential")
         short_code = input().upper()
         if short_code == 'N':
             print("Enter your details to create an account")
@@ -164,7 +158,7 @@ def main():
             mail = input()
 
             print(
-                "Press AP -auto generated password(recommended) or MP- for your own password")
+                "Press AP - to get an auto generated password(recommended) or MP- to input your own password")
 
             short_code2 = input().upper()
             if short_code2 == "AP":
@@ -183,6 +177,7 @@ def main():
             print("Navigate with these short codes: >>SE<< store existing credential,>>FC<< Find a credential, >>SN<< store new credential, >>VW<<  view credentials, >>DEL<< delete a credential,>>EX<< exit application,")
 
         elif short_code == 'VW':
+            """Method to view a list of credentials"""
 
             if display_credentials():
                 print("Your credentials are as below")
@@ -201,6 +196,7 @@ def main():
                 print("Navigate with these short codes: >>SE<< store existing credential,>>FC<< Find a credential, >>SN<< store new credential, >>VW<<  view credentials, >>DEL<< delete a credential,>>EX<< exit application,")
 
         elif short_code == "FC":
+            """Credential search implementation"""
 
             print("Enter account name for credential you are looking for")
 
@@ -216,6 +212,7 @@ def main():
                 print("Navigate with these short codes: >>SE<< store existing credential,>>FC<< Find a credential, >>SN<< store new credential, >>VW<<  view credentials, >>DEL<< delete a credential,>>EX<< exit application,")
 
         elif short_code == 'DEL':
+            """Below is a method to delete a password"""
 
             print("Enter account name for credential to delete")
             delete_query = input()
