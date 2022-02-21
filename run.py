@@ -162,7 +162,9 @@ def main():
 
             short_code2 = input().upper()
             if short_code2 == "AP":
-                length = 10
+                print(
+                    "****Please input the length of the password you'd like generated****")
+                length = int(input())
                 random_password = ''.join(secrets.choice(
                     string.ascii_letters + string.digits) for i in range(length))
                 pword = str(random_password)
